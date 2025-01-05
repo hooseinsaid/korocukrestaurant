@@ -8,6 +8,7 @@ use Admin\Models\Location_areas_model;
 use Admin\Traits\FormModelWidget;
 use Admin\Traits\ValidatesForm;
 use Igniter\Flame\Exception\ApplicationException;
+use Igniter\Flame\Html\HtmlFacade as Html;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -101,7 +102,7 @@ class MapArea extends BaseFormWidget
         if (strlen($key = setting('maps_api_key'))) {
             $url = 'https://maps.googleapis.com/maps/api/js?key=%s&libraries=geometry';
             $this->addJs(sprintf($url, $key),
-                ['name' => 'google-maps-js', 'async' => null, 'defer' => null],
+                ['name' => 'google-maps-js', 'async' => null, 'defer' => null]
             );
         }
 
@@ -174,14 +175,14 @@ class MapArea extends BaseFormWidget
 
         $modelsToSave = $this->prepareModelsToSave($model, $saveData);
 
-        DB::transaction(function() use ($modelsToSave) {
+        DB::transaction(function () use ($modelsToSave) {
             foreach ($modelsToSave as $modelToSave) {
                 $modelToSave->saveOrFail();
             }
         });
 
         flash()->success(sprintf(lang('admin::lang.alert_success'),
-            'Area '.($form->context == 'create' ? 'created' : 'updated'),
+            'Area '.($form->context == 'create' ? 'created' : 'updated')
         ))->now();
 
         $this->formField->value = null;
@@ -215,11 +216,11 @@ class MapArea extends BaseFormWidget
         ];
     }
 
-    public function getMapAreaShapes($area)
+    public function getMapShapeAttributes($area)
     {
         $areaColor = $area->color;
 
-        $attributes = collect()->push([
+        $attributes = [
             'data-id' => $area->area_id ?? 1,
             'data-name' => $area->name ?? '',
             'data-default' => $area->type ?? 'address',
@@ -233,11 +234,9 @@ class MapArea extends BaseFormWidget
                 'strokeColor' => $areaColor,
                 'distanceUnit' => setting('distance_unit'),
             ]),
-        ]);
+        ];
 
-        $this->fireSystemEvent('maparea.extendMapAreaShapes', [$area, $attributes]);
-
-        return $attributes;
+        return Html::attributes($attributes);
     }
 
     protected function getMapAreas()

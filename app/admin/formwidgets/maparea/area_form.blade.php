@@ -15,9 +15,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
         </div>
         <input type="hidden" name="areaId" value="{{ $formAreaId }}">
-        @foreach($this->getMapAreaShapes($formWidget->model) as $mapShape)
-            <input type="hidden" data-map-shape {!! Html::attributes($mapShape) !!}>
-        @endforeach
+        <input type="hidden" data-map-shape {!! $this->getMapShapeAttributes($formWidget->model) !!}>
         <div class="modal-body">
             <div class="form-fields p-0">
                 @foreach ($formWidget->getFields() as $field)

@@ -1,28 +1,20 @@
 {
-  "name": "tastyigniter/tastyigniter",
-  "description": "TastyIgniter is a free open source online ordering and restaurant management system",
+  "name": "korocukrestaurant/korocuk",
+  "description": "corocuk is an online ordering and restaurant management system",
   "type": "project",
   "keywords": [
-    "tastyigniter", "igniter", "restaurant",
+    "restaurant", "kocoruck", "restaurant",
     "ordering", "ecommerce", "opensource"
-  ],
+  ], 
   "authors": [
     {
-      "name": "Samuel Adepoyigi",
-      "email": "sam@sampoyigi.com",
+      "name": "hussaini saidu adamu",
+      "email": "hussainisaidadam@gmail.com",
       "role": "Creator"
     }
   ],
   "license": "MIT",
-  "homepage": "https://tastyigniter.com",
-  "support": {
-    "paid": "https://tastyigniter.com/premium-support",
-    "issues": "https://github.com/tastyigniter/TastyIgniter/issues",
-    "forum": "https://forum.tastyigniter.com",
-    "discord": "https/tastyigniter.com/discord",
-    "docs": "https://tastyigniter.com/docs",
-    "source": "https://github.com/tastyigniter/TastyIgniter"
-  },
+  "homepage": "htpp://kocoruk.hsaid.com.ng", 
   "require": {
     "php": ">=7.4",
     "composer/installers": "dev-main as 2.0",
